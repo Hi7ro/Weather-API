@@ -9,22 +9,28 @@ import { FetchdataServiceService } from 'src/app/fetchdata-service.service';
 })
 export class WeatherWidgetMainComponent {
   WeatherData: any;
-  // DATA = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={acf38c079b941e7c1bbb5f9b3334611e}';
-  //Weather API
-  Url =
-    'https://api.open-meteo.com/v1/forecast?latitude=48.21&longitude=16.37&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin';
+  Url: string =
+    'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=acf38c079b941e7c1bbb5f9b3334611e';
 
   constructor(private service: FetchdataServiceService) {}
 
   ngOnInit() {
     this.getWeatherData();
+    console.log(this.WeatherData);
   }
 
   getWeatherData(): void {
-    this.service.getData(this.Url).subscribe((data) => console.log(data));
+    this.service.getData(this.Url).subscribe(data => {
+      this.WeatherData = data;
+      console.log(data);
+    });
+    
   }
 
   setWeatherData(data: any) {
     this.WeatherData = data;
+
+
+
   }
 }

@@ -10,4 +10,5 @@ export class FetchdataServiceService {
   getData(url: string) {
     return this.http.get(url);
   }
+
 }
